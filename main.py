@@ -2,7 +2,7 @@ import perso
 import board
 import case
 
-board = board.Board(3,3)
+board = board.Board(15,8)
 board.initialize()
-board.anoucement()
+# board.anoucement()
 board.showing_board()

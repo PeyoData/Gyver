@@ -4,6 +4,3 @@ class Perso:
     POS_Y = 0
     HAS_OBJ = 0
     IS_ALIVE = True
-
-    def __init__(self):
-        print("hello")
