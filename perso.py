@@ -1,6 +1,17 @@
+import board
+import case
+
 class Perso:
 
-    POS_X = 0
-    POS_Y = 0
     HAS_OBJ = 0
     IS_ALIVE = True
+
+    def move(self, direction):
+        if(direction == "up"):
+            pass
+        elif(direction == "down"):
+            pass
+        elif(direction == "right"):
+            pass
+        else:
+            pass
