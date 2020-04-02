@@ -1,68 +1,53 @@
-import case
+import random
 
 class Board:
 
-    list_case = []
-    #organisation de la grille
-    construction = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                    1, 2, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 3, 1,
-                    1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1,
-                    1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1,
-                    1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1,
-                    1, 3, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 1, 1, 1, 3, 0, 1, 1, 4, 1,
-                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                    ]
+    maze = []
 
-    def __init__(self, width, height):
+    def __init__(self, width, height, gyver, guard):
         self.width = width
         self.height = height
-        self.list_case = self.initialize()
+        self.maze = self.maze_init(gyver, guard)
 
-    # liste des elements(positions + contenu) en partant de la construction
-    def initialize(self):
-        list_case = []
+    def maze_init(self, gyver, guard):
+        brut_maze = []
+        with open("waze.txt", "r") as file:
+            for line in file.readlines():
+                brut_maze.append(list(line))
+
+        for e in brut_maze:
+            if len(e) == 16:
+                e.pop()
+
+        brut_maze[gyver.pos_x][gyver.pos_y] = "@"
+        brut_maze[guard.pos_x][guard.pos_y] = "g"
+        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "°"
+        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "°"
+        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "°"
+        return brut_maze
+
+    def init_objects(self, brut_maze):
         x = 0
         y = 0
-        for e in range(len(self.construction)):
-            if y == self.width:
-                x +=1
-                y = 0
-            if (self.construction[e] == 2):
-                list_case.append(case.Case(x,y,"perso"))
-            elif(self.construction[e] == 4):
-                list_case.append(case.Case(x,y,"guard"))
-            elif (self.construction[e] == 3):
-                list_case.append(case.Case(x, y, "object"))
-            elif(self.construction[e] == 0):
-                list_case.append(case.Case(x, y, "ground"))
-            else:
-                list_case.append(case.Case(x, y, "wall"))
-            y +=1
+        while brut_maze[x][y] != " ":
+            x = random.randint(1, self.height - 2)
+            y = random.randint(1, self.width - 2)
+        return x, y
 
-        return list_case
+    def case_is_object(self, perso, orientation):
+        if orientation == "up":
+            if self.maze[perso.pos_x - 1][perso.pos_y] == '°':
+                perso.nbr_obj += 1
 
-    #affichage des elements de la board
-    def showing_board(self):
-        for e in self.list_case:
-                if(e.case_content == "perso"):
-                    print("o", end='')
-                elif(e.case_content == "object"):
-                    print("=", end='')
-                elif (e.case_content == "guard"):
-                    print("@", end='')
-                elif(e.case_content == "ground"):
-                    print("_", end='')
-                else:
-                    if(e.latitude == self.width-1):
-                        print("#")
-                    else:
-                        print("#", end='')
+        elif orientation == "down":
+            if self.maze[perso.pos_x + 1][perso.pos_y] == '°':
+                perso.nbr_obj += 1
 
-    def anoucement(self):
-        print("width = {} / height = {}".format(self.width,self.height))
-        for e in self.list_case:
-            print(str(e.longitude) + str(e.latitude) + e.case_content)
+        elif orientation == "right":
+            if self.maze[perso.pos_x][perso.pos_y + 1] == '°':
+                perso.nbr_obj += 1
 
-    def get_listCase(self):
-        return self.list_case
+        elif orientation == "left":
+            if self.maze[perso.pos_x][perso.pos_y - 1] == '°':
+                perso.nbr_obj += 1
+
