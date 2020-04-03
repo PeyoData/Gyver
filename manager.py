@@ -27,8 +27,8 @@ class Main:
     # as long as MacGyver's not on the same square as the guard...
     def start(self, view):
         while (self.gyver.pos_x, self.gyver.pos_y) != (self.guard.pos_x, self.guard.pos_y):
-            view.display(self.board.maze)
             view.display_inventory(self.gyver.inventory)
+            view.display(self.board.maze)
             action = view.get_direction()
             self.gyver.moving(self.board, action)
 

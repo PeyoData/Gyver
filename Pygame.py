@@ -8,9 +8,9 @@ class Pygame:
 
         pygame.init()
         # creation of the windows
-        self.windows = pygame.display.set_mode((640, 480), pygame.RESIZABLE)
+        self.windows = pygame.display.set_mode((1100, 700))
+        pygame.display.set_caption("MacGyver Escape")
 
-        self.images["background"] = pygame.image.load("img/background.jpg").convert()
         self.images["wall"] = pygame.image.load("img/wall.png").convert()
         self.images["perso"] = pygame.image.load("img/perso.png").convert()
         self.images["object"] = pygame.image.load("img/object.png").convert()
@@ -18,8 +18,9 @@ class Pygame:
         self.images["ground"] = pygame.image.load("img/ground.png").convert()
 
     def display(self, lab):
-        x = 0
-        y = 0
+
+        x = 237
+        y = 250
         nbr = 0
         for line in lab:
             for case in line:
@@ -34,9 +35,9 @@ class Pygame:
                 elif case == " ":
                     self.windows.blit(self.images["ground"], (x, y))
 
-                x += 22
-            x = 0
-            y += 19
+                x += 42
+            x = 237
+            y += 39
         pygame.display.flip()
 
     def get_direction(self):
@@ -53,6 +54,16 @@ class Pygame:
                 elif event.key == K_LEFT:
                     return "LEFT"
 
-    def display_inventor(self, inventory):
+    def display_inventory(self, inventory):
+        font = pygame.font.SysFont("Arial", 20)
+        text = font.render("INVENTORY", 0, (255, 255, 255))
+        self.windows.blit(text, (950, 20))
+        x = 950
+        y = 50
+        self.windows.blit(self.images["wall"], (950, y))
+        self.windows.blit(self.images["wall"], (1000, y))
+        self.windows.blit(self.images["wall"], (1050, y))
         for item in inventory:
-            print(f"Inventory: ${''.join(item)}")
+            self.windows.blit(self.images["object"], (x, y))
+            x += 50
+
