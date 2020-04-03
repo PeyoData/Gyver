@@ -17,7 +17,6 @@ class Pygame:
         self.images["guard"] = pygame.image.load("img/guard.png").convert()
         self.images["ground"] = pygame.image.load("img/ground.png").convert()
 
-
     def display(self, lab):
         x = 0
         y = 0

@@ -1,6 +1,7 @@
 class Perso:
 
     nbr_obj = 0
+    inventory = []
     IS_ALIVE = True
 
     def __init__(self, type):
@@ -32,7 +33,6 @@ class Perso:
                 board.maze[self.pos_x + 1][self.pos_y] = '@'
                 board.maze[self.pos_x][self.pos_y] = ' '
                 self.pos_x += 1
-
 
         elif orientation == "RIGHT":
             if board.maze[self.pos_x][self.pos_y + 1] == '#':

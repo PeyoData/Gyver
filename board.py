@@ -8,6 +8,7 @@ class Board:
         self.width = width
         self.height = height
         self.maze = self.maze_init(gyver, guard)
+        self.list_object = ['Eiter', 'needle', 'pipe']
 
     def maze_init(self, gyver, guard):
         brut_maze = []
@@ -37,17 +38,17 @@ class Board:
     def case_is_object(self, perso, orientation):
         if orientation == "up":
             if self.maze[perso.pos_x - 1][perso.pos_y] == '°':
-                perso.nbr_obj += 1
+                perso.inventory.append(self.list_object.pop())
 
         elif orientation == "down":
             if self.maze[perso.pos_x + 1][perso.pos_y] == '°':
-                perso.nbr_obj += 1
+                perso.inventory.append(self.list_object.pop())
 
         elif orientation == "right":
             if self.maze[perso.pos_x][perso.pos_y + 1] == '°':
-                perso.nbr_obj += 1
+                perso.inventory.append(self.list_object.pop())
 
         elif orientation == "left":
             if self.maze[perso.pos_x][perso.pos_y - 1] == '°':
-                perso.nbr_obj += 1
+                perso.inventory.append(self.list_object.pop())
 

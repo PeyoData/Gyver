@@ -28,14 +28,13 @@ class Main:
     def start(self, view):
         while (self.gyver.pos_x, self.gyver.pos_y) != (self.guard.pos_x, self.guard.pos_y):
             view.display(self.board.maze)
-            # view.display_inventory(None)
-            # board display
+            view.display_inventory(self.gyver.inventory)
             action = view.get_direction()
             self.gyver.moving(self.board, action)
 
         # output of the while loop, MacGyver met the guard
 
-        if self.gyver.nbr_obj == 3:
+        if len(self.gyver.inventory) == 3:
             print("YOU SUCCEED !")
         else:
             print("YOU LOOSE...")

@@ -24,6 +24,8 @@ class CLI:
         else:
             pass
 
-    def display_inventor(self, inventory):
+    def display_inventory(self, inventory):
+        print("Inventory : ", end=" ")
         for item in inventory:
-            print(f"Inventory: ${''.join(item)}")
+            print(item, end=" / ")
+        print(" ")
