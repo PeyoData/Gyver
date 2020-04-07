@@ -18,6 +18,8 @@ class Pygame:
         self.images["N"] = pygame.image.load("img/object3.png").convert()
         self.images["g"] = pygame.image.load("img/guard.png").convert()
         self.images[" "] = pygame.image.load("img/ground.png").convert()
+        # self.images["final_win"] == pygame.image.load("img/win.png").convert()
+        # self.images["final_lose"] == pygame.image.load("img/lose.png").convert()
 
     def display(self, lab):
 
@@ -60,4 +62,12 @@ class Pygame:
         for item in inventory:
             self.windows.blit(self.images[item], (x, y))
             x += 50
+
+    def final_screen(self, inventory):
+        if len(inventory) == 3:
+            self.windows.blit(self.images["g"], (950, 30))
+        else:
+            self.windows.blit(self.images["N"], (950, 30))
+        pygame.display.flip()
+        pygame.time.delay(5000)
 

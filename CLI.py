@@ -1,5 +1,5 @@
 import os
-
+import perso
 
 class CLI:
 
@@ -29,3 +29,9 @@ class CLI:
         for item in inventory:
             print(item, end=" / ")
         print(" ")
+
+    def final_screen(self, inventory):
+        if len(inventory) == 3:
+            print("YOU SUCCEED !")
+        else:
+            print("YOU LOOSE...")
