@@ -2,7 +2,7 @@ import sys
 
 import perso
 import board
-import CLI
+import cli
 import Pygame
 
 
@@ -20,7 +20,7 @@ class Main:
                 print("unknown argument")
                 exit()
         else:
-            view = CLI.CLI()    # load CLI mode
+            view = cli.CLI()    # load CLI mode
         if view is not None:
             self.start(view)
 

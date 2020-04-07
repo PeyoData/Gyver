@@ -2,7 +2,9 @@ import pygame
 from pygame.constants import *
 
 
-class Pygame:
+class Pygame(object):
+
+    """Pygame Class"""
     def __init__(self):
         self.images = dict()
 
@@ -21,19 +23,43 @@ class Pygame:
         # self.images["final_lose"] == pygame.image.load("img/lose.png").convert()
 
     def display(self, lab):
-
-        x = 237
-        y = 250
-        nbr = 0
+        """Display the game layout"""
+        pxl_x = 237
+        pxl_y = 250
         for line in lab:
             for case in line:
-                self.windows.blit(self.images[case], (x, y))
-                x += 42
-            x = 237
-            y += 39
+                self.windows.blit(self.images[case], (pxl_x, pxl_y))
+                pxl_x += 42
+            pxl_x = 237
+            pxl_y += 39
         pygame.display.flip()
 
-    def get_direction(self):
+    def display_inventory(self, inventory):
+        """display items in inventory"""
+        font = pygame.font.SysFont("Arial", 20)
+        text = font.render("INVENTORY", 0, (255, 255, 255))
+        self.windows.blit(text, (950, 20))
+        pxl_x = 950
+        pxl_y = 50
+        self.windows.blit(self.images["#"], (950, pxl_y))
+        self.windows.blit(self.images["#"], (1000, pxl_y))
+        self.windows.blit(self.images["#"], (1050, pxl_y))
+        for item in inventory:
+            self.windows.blit(self.images[item], (pxl_x, pxl_y))
+            pxl_x += 50
+
+    def final_screen(self, inventory):
+        """display the final screen"""
+        if len(inventory) == 3:
+            self.windows.blit(self.images["g"], (950, 30))
+        else:
+            self.windows.blit(self.images["N"], (950, 30))
+        pygame.display.flip()
+        pygame.time.delay(4000)
+
+    @staticmethod
+    def get_direction():
+        """Return the chosen Direction"""
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
@@ -46,25 +72,3 @@ class Pygame:
                     return "RIGHT"
                 elif event.key == K_LEFT:
                     return "LEFT"
-
-    def display_inventory(self, inventory):
-        font = pygame.font.SysFont("Arial", 20)
-        text = font.render("INVENTORY", 0, (255, 255, 255))
-        self.windows.blit(text, (950, 20))
-        x = 950
-        y = 50
-        self.windows.blit(self.images["#"], (950, y))
-        self.windows.blit(self.images["#"], (1000, y))
-        self.windows.blit(self.images["#"], (1050, y))
-        for item in inventory:
-            self.windows.blit(self.images[item], (x, y))
-            x += 50
-
-    def final_screen(self, inventory):
-        if len(inventory) == 3:
-            self.windows.blit(self.images["g"], (950, 30))
-        else:
-            self.windows.blit(self.images["N"], (950, 30))
-        pygame.display.flip()
-        pygame.time.delay(5000)
-

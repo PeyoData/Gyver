@@ -36,3 +36,4 @@ class CLI:
             print("YOU SUCCEED !")
         else:
             print("YOU LOOSE...")
+
