@@ -13,17 +13,14 @@ class Perso:
     # MacGyver movement
     def moving(self, board, orientation):
         if orientation == "UP":
-            # stop if the next square is a wall
-            if board.maze[self.pos_x - 1][self.pos_y] == '#':
+            if board.maze[self.pos_x - 1][self.pos_y] == '#':   # do nothing if the next square is a wall
                 pass
             else:
-                # call the add object function
-                board.case_is_object(self, "up")
+                board.case_is_object(self, "up")    # call the add object function
                 # inversion of MacGyver's box and its destination
                 board.maze[self.pos_x - 1][self.pos_y] = '@'
                 board.maze[self.pos_x][self.pos_y] = ' '
-                # update of MacGyver's positions
-                self.pos_x -= 1
+                self.pos_x -= 1     # update of MacGyver's positions
 
         elif orientation == "DOWN":
             if board.maze[self.pos_x + 1][self.pos_y] == '#':

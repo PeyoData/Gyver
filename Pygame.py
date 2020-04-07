@@ -7,8 +7,7 @@ class Pygame:
         self.images = dict()
 
         pygame.init()
-        # creation of the windows
-        self.windows = pygame.display.set_mode((1100, 700))
+        self.windows = pygame.display.set_mode((1100, 700))     # creation of the windows
         pygame.display.set_caption("MacGyver Escape")
 
         self.images["#"] = pygame.image.load("img/wall.png").convert()
@@ -29,8 +28,6 @@ class Pygame:
         for line in lab:
             for case in line:
                 self.windows.blit(self.images[case], (x, y))
-
-
                 x += 42
             x = 237
             y += 39
@@ -38,8 +35,8 @@ class Pygame:
 
     def get_direction(self):
         for event in pygame.event.get():
-            if event.type == QUIT:  # Si un de ces événements est de type QUIT
-                pass
+            if event.type == QUIT:
+                exit()
             elif event.type == KEYDOWN:
                 if event.key == K_UP:
                     return "UP"

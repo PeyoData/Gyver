@@ -14,13 +14,13 @@ class Main:
     def __init__(self):
         view = None
         if len(sys.argv) > 1:
-            if sys.argv[1] == "-g":
+            if sys.argv[1] == "-g":     # load graphic mode
                 view = Pygame.Pygame()
             else:
                 print("unknown argument")
                 exit()
         else:
-            view = CLI.CLI()
+            view = CLI.CLI()    # load CLI mode
         if view is not None:
             self.start(view)
 
@@ -33,9 +33,8 @@ class Main:
             action = view.get_direction()
             self.gyver.moving(self.main_board, action)
 
-        # output of the while loop, MacGyver met the guard
-        view.final_screen(self.gyver.inventory)
+        view.final_screen(self.gyver.inventory)     # output of the while loop, MacGyver met the guard
 
 
-if __name__ == "__main__":  # Main is to start the play like a program
+if __name__ == "__main__":
     Main()
