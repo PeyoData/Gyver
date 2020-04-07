@@ -11,11 +11,13 @@ class Pygame:
         self.windows = pygame.display.set_mode((1100, 700))
         pygame.display.set_caption("MacGyver Escape")
 
-        self.images["wall"] = pygame.image.load("img/wall.png").convert()
-        self.images["perso"] = pygame.image.load("img/perso.png").convert()
-        self.images["object"] = pygame.image.load("img/object.png").convert()
-        self.images["guard"] = pygame.image.load("img/guard.png").convert()
-        self.images["ground"] = pygame.image.load("img/ground.png").convert()
+        self.images["#"] = pygame.image.load("img/wall.png").convert()
+        self.images["@"] = pygame.image.load("img/perso.png").convert()
+        self.images["E"] = pygame.image.load("img/object.png").convert()
+        self.images["P"] = pygame.image.load("img/object2.png").convert()
+        self.images["N"] = pygame.image.load("img/object3.png").convert()
+        self.images["g"] = pygame.image.load("img/guard.png").convert()
+        self.images[" "] = pygame.image.load("img/ground.png").convert()
 
     def display(self, lab):
 
@@ -24,16 +26,8 @@ class Pygame:
         nbr = 0
         for line in lab:
             for case in line:
-                if case == "#":
-                    self.windows.blit(self.images["wall"], (x, y))
-                elif case == "@":
-                    self.windows.blit(self.images["perso"], (x, y))
-                elif case == "°":
-                    self.windows.blit(self.images["object"], (x, y))
-                elif case == "g":
-                    self.windows.blit(self.images["guard"], (x, y))
-                elif case == " ":
-                    self.windows.blit(self.images["ground"], (x, y))
+                self.windows.blit(self.images[case], (x, y))
+
 
                 x += 42
             x = 237
@@ -60,10 +54,10 @@ class Pygame:
         self.windows.blit(text, (950, 20))
         x = 950
         y = 50
-        self.windows.blit(self.images["wall"], (950, y))
-        self.windows.blit(self.images["wall"], (1000, y))
-        self.windows.blit(self.images["wall"], (1050, y))
+        self.windows.blit(self.images["#"], (950, y))
+        self.windows.blit(self.images["#"], (1000, y))
+        self.windows.blit(self.images["#"], (1050, y))
         for item in inventory:
-            self.windows.blit(self.images["object"], (x, y))
+            self.windows.blit(self.images[item], (x, y))
             x += 50
 

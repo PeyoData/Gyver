@@ -8,7 +8,7 @@ class Board:
         self.width = width
         self.height = height
         self.maze = self.maze_init(gyver, guard)
-        self.list_object = ['Eiter', 'needle', 'pipe']
+        self.dict_object = ('E', 'N', 'P')
 
     def maze_init(self, gyver, guard):
         brut_maze = []
@@ -22,9 +22,9 @@ class Board:
 
         brut_maze[gyver.pos_x][gyver.pos_y] = "@"
         brut_maze[guard.pos_x][guard.pos_y] = "g"
-        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "°"
-        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "°"
-        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "°"
+        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "E"
+        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "N"
+        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "P"
         return brut_maze
 
     def init_objects(self, brut_maze):
@@ -36,19 +36,20 @@ class Board:
         return x, y
 
     def case_is_object(self, perso, orientation):
+
         if orientation == "up":
-            if self.maze[perso.pos_x - 1][perso.pos_y] == '°':
-                perso.inventory.append(self.list_object.pop())
+            if self.maze[perso.pos_x - 1][perso.pos_y] in ('E', 'N', 'P'):
+                perso.inventory.append(self.maze[perso.pos_x - 1][perso.pos_y])
 
         elif orientation == "down":
-            if self.maze[perso.pos_x + 1][perso.pos_y] == '°':
-                perso.inventory.append(self.list_object.pop())
+            if self.maze[perso.pos_x + 1][perso.pos_y] in ('E', 'N', 'P'):
+                perso.inventory.append(self.maze[perso.pos_x + 1][perso.pos_y])
 
         elif orientation == "right":
-            if self.maze[perso.pos_x][perso.pos_y + 1] == '°':
-                perso.inventory.append(self.list_object.pop())
+            if self.maze[perso.pos_x][perso.pos_y + 1] in ('E', 'N', 'P'):
+                perso.inventory.append(self.maze[perso.pos_x][perso.pos_y + 1] )
 
         elif orientation == "left":
-            if self.maze[perso.pos_x][perso.pos_y - 1] == '°':
-                perso.inventory.append(self.list_object.pop())
+            if self.maze[perso.pos_x][perso.pos_y - 1] in ('E', 'N', 'P'):
+                perso.inventory.append(self.maze[perso.pos_x][perso.pos_y - 1])
 
