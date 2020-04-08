@@ -37,7 +37,7 @@ class Board(object):
         """Set objects random positions """
         pos_x = 0
         pos_y = 0
-        while brut_maze[pos_x][pos_y] != " ":
+        while brut_maze[pos_x][pos_y] in ("#", "@", "g", "E", "P", "N"):
             pos_x = random.randint(1, self.height - 2)
             pos_y = random.randint(1, self.width - 2)
 
