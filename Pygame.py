@@ -37,8 +37,8 @@ class Pygame:
     def display_inventory(self, inventory):
         """display items in inventory"""
         font = pygame.font.SysFont("Arial", 20)
-        text = font.render("INVENTORY", 0, (255, 255, 255))
-        self.windows.blit(text, (950, 20))
+        inventory_txt = font.render("INVENTORY", 0, (255, 255, 255))
+        self.windows.blit(inventory_txt, (950, 20))
         pxl_x = 950
         pxl_y = 50
         self.windows.blit(self.images["#"], (950, pxl_y))
@@ -50,10 +50,13 @@ class Pygame:
 
     def final_screen(self, inventory):
         """display the final screen"""
+        font = pygame.font.SysFont("Arial", 20)
         if len(inventory) == 3:
-            self.windows.blit(self.images["g"], (950, 30))
+            final_txt = font.render("VICTORY !", 0, (255, 255, 255))
+            self.windows.blit(final_txt, (510, 190))
         else:
-            self.windows.blit(self.images["N"], (950, 30))
+            final_txt = font.render("DEFEAT...", 0, (255, 255, 255))
+            self.windows.blit(final_txt, (510, 190))
         pygame.display.flip()
         pygame.time.delay(4000)
 
