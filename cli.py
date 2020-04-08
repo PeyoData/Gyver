@@ -1,5 +1,4 @@
 import os
-import perso
 
 
 class CLI:
@@ -7,12 +6,18 @@ class CLI:
     def __init__(self):
         pass
 
-    def display(self, lab):
+    @staticmethod
+    def display(lab):
+        """Display the game"""
+
         os.system('clear')
         for list in lab:
             print("".join(list))
 
-    def get_direction(self):
+    @staticmethod
+    def get_direction():
+        """Receive Input"""
+
         key_input = input("")
         if key_input == "z":
             return "UP"
@@ -25,13 +30,19 @@ class CLI:
         else:
             pass
 
-    def display_inventory(self, inventory):
+    @staticmethod
+    def display_inventory(inventory):
+        """Show MacGyver inventory"""
+
         print("Inventory : ", end=" ")
         for item in inventory:
             print(item, end=" / ")
         print(" ")
 
-    def final_screen(self, inventory):
+    @staticmethod
+    def final_screen(inventory):
+        """Display the Victory/Lose panel"""
+
         if len(inventory) == 3:
             print("YOU SUCCEED !")
         else:

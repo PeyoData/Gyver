@@ -2,9 +2,9 @@ import pygame
 from pygame.constants import *
 
 
-class Pygame(object):
-
+class Pygame:
     """Pygame Class"""
+
     def __init__(self):
         self.images = dict()
 

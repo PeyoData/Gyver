@@ -1,19 +1,22 @@
-class Perso:
+class Perso(object):
+    """Perso Class"""
 
     nbr_obj = 0
     inventory = []
     IS_ALIVE = True
 
-    def __init__(self, type):
-        if type == "guard":
+    def __init__(self, identity):
+        if identity == "guard":
             self.pos_x, self.pos_y = 7, 13
-        if type == "gyver":
+        if identity == "gyver":
             self.pos_x, self.pos_y = 0, 1
 
     # MacGyver movement
     def moving(self, board, orientation):
+        """Management of the character's movements"""
+
         if orientation == "UP":
-            if board.maze[self.pos_x - 1][self.pos_y] == '#':   # do nothing if the next square is a wall
+            if board.maze[self.pos_x - 1][self.pos_y] == '#':   # pass if the next square is a wall
                 pass
             else:
                 board.case_is_object(self, "up")    # call the add object function
