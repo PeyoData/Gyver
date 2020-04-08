@@ -7,6 +7,8 @@ import Pygame
 
 
 class Main:
+    """Main class"""
+
     gyver = perso.Perso("gyver")
     guard = perso.Perso("guard")
     main_board = board.Board(15, 8, gyver, guard)
@@ -26,6 +28,7 @@ class Main:
 
     # as long as MacGyver's not on the same square as the guard...
     def start(self, view):
+        """Game body"""
         while (self.gyver.pos_x, self.gyver.pos_y) != (self.guard.pos_x, self.guard.pos_y):
             view.display(self.main_board.maze)
             view.display_inventory(self.gyver.inventory)
@@ -33,7 +36,7 @@ class Main:
             action = view.get_direction()
             self.gyver.moving(self.main_board, action)
 
-        view.final_screen(self.gyver.inventory)     # output of the while loop, MacGyver met the guard
+        view.final_screen(self.gyver.inventory)     # loop output when MacGyver met the guard
 
 
 if __name__ == "__main__":
