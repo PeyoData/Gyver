@@ -1,17 +1,17 @@
 import sys
 
-import perso
-import board
-import cli
 import Pygame
+import cli
+from board import Board
+from perso import Perso
 
 
 class Main:
     """Main class"""
 
-    gyver = perso.Perso("gyver")
-    guard = perso.Perso("guard")
-    main_board = board.Board(15, 8, gyver, guard)
+    gyver = Perso("gyver")
+    guard = Perso("guard")
+    main_board = Board(15, 8, gyver, guard)
 
     def __init__(self):
         view = None

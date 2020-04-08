@@ -25,9 +25,12 @@ class Board(object):
 
         brut_maze[gyver.pos_x][gyver.pos_y] = "@"
         brut_maze[guard.pos_x][guard.pos_y] = "g"
-        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "E"
-        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "N"
-        brut_maze[self.init_objects(brut_maze)[0]][self.init_objects(brut_maze)[1]] = "P"
+        temp_pos = self.init_objects(brut_maze)
+        brut_maze[temp_pos[0]][temp_pos[1]] = "E"
+        temp_pos = self.init_objects(brut_maze)
+        brut_maze[temp_pos[0]][temp_pos[1]] = "N"
+        temp_pos = self.init_objects(brut_maze)
+        brut_maze[temp_pos[0]][temp_pos[1]] = "P"
         return brut_maze
 
     def init_objects(self, brut_maze):
@@ -37,6 +40,7 @@ class Board(object):
         while brut_maze[pos_x][pos_y] != " ":
             pos_x = random.randint(1, self.height - 2)
             pos_y = random.randint(1, self.width - 2)
+
         return pos_x, pos_y
 
     def case_is_object(self, perso, orientation):
